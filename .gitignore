@@ -4,8 +4,7 @@
 **/dist
 
 # dependencies
-**/node_modules
-**/package-lock.json
+env/
 
 # IDEs and editors
 **/.project
@@ -22,23 +21,11 @@
 **/!.vscode/extensions.json
 
 # misc
-frontend/.sass-cache
-frontend/connect.lock
-frontend/coverage
-frontend/libpeerconnection.log
-frontend/npm-debug.log
-frontend/testem.log
-frontend/typings
 
 # System Files
 **/.DS_Store
 **/Thumbs.db
 
 #sensitive_data
-**/remote-conn.json
-backend/src/secret.json
-backend/src/__tests__/test_config.js
-**/key
 **/secret.json
-**/logs
 
