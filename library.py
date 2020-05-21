@@ -11,7 +11,7 @@ def main():
         display_main_menu()
         choice = int(input('Enter your Selection: \n'))
         if choice == MAIN_LIBRARIAN_CHOICE:
-            print("Librarian Choice\n")
+            display_library1_menu()
         elif choice == MAIN_ADMINISTRATOR_CHOICE:
             print("Main Admin Choice\n")
         elif choice == MAIN_BORROWER_CHOICE:
@@ -29,6 +29,17 @@ def display_main_menu():
     print("2) Administrator?")
     print("3) Borrower?")
     print("4) Quit")
+
+
+def display_library1_menu():
+    choice = 0
+    print("1) Enter the branch you manage")
+    print("2) Return to main menu")
+    choice = int(input('Enter Your Selection '))
+    if choice == 1:
+        print("Librarian SubMenu\n")
+    elif choice == 2:
+        main()
 
 
 main()
