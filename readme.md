@@ -1,9 +1,9 @@
-#Flaming Flamingos Library App
+# Flaming Flamingos Library App
 
-##Technology 
+## Technology 
 
 * Python3 
 * MYSQL
 
-##Setup
+## Setup
 `pip install -r requirements.txt`
