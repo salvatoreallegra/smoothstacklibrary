@@ -1,4 +1,6 @@
 
+from dbconnect import test_function
+
 MAIN_LIBRARIAN_CHOICE = 1
 MAIN_ADMINISTRATOR_CHOICE = 2
 MAIN_BORROWER_CHOICE = 3
@@ -6,20 +8,21 @@ QUIT_CHOICE = 4
 
 
 def main():
-    choice = 0
-    while choice != QUIT_CHOICE:
-        display_main_menu()
-        choice = int(input('Enter your Selection: \n'))
-        if choice == MAIN_LIBRARIAN_CHOICE:
-            display_library1_menu()
-        elif choice == MAIN_ADMINISTRATOR_CHOICE:
-            print("Main Admin Choice\n")
-        elif choice == MAIN_BORROWER_CHOICE:
-            print("Main Borrower Choice\n")
-        elif choice == QUIT_CHOICE:
-            print('Exiting the program. . .\n')
-        else:
-            print('Error: invalid selection...\n')
+    # choice = 0
+    # while choice != QUIT_CHOICE:
+    #     display_main_menu()
+    #     choice = int(input('Enter your Selection: \n'))
+    #     if choice == MAIN_LIBRARIAN_CHOICE:
+    #         display_library1_menu()
+    #     elif choice == MAIN_ADMINISTRATOR_CHOICE:
+    #         print("Main Admin Choice\n")
+    #     elif choice == MAIN_BORROWER_CHOICE:
+    #         print("Main Borrower Choice\n")
+    #     elif choice == QUIT_CHOICE:
+    #         print('Exiting the program. . .\n')
+    #     else:
+    #         print('Error: invalid selection...\n')
+    test_function()
 
 
 def display_main_menu():
@@ -38,8 +41,11 @@ def display_library1_menu():
     choice = int(input('Enter Your Selection '))
     if choice == 1:
         print("Librarian SubMenu\n")
+
     elif choice == 2:
         main()
+    else:
+        print("Invalid Selection")
 
 
 main()
