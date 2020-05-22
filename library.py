@@ -52,6 +52,7 @@ def display_library1_menu():
         main()
     else:
         print("Invalid Selection")
+        display_library1_menu()
 
 
 main()

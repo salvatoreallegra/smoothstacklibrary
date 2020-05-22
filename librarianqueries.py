@@ -9,4 +9,4 @@ myCursor = cnx.cursor()
 
 
 def getAllLibraries():
-    return "Hello Libraries"
+    print("Hello Libraries")
