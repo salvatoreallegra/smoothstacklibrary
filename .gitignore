@@ -5,6 +5,7 @@
 
 # dependencies
 env/
+**/__pycache__
 
 # IDEs and editors
 **/.project
