@@ -8,8 +8,8 @@ try:
     cnx = conn.getConnection()
     myCursor = cnx.cursor()
 
-    args = [1, 'Shady Hollow', 'WunderBar']
-    result_args = myCursor.callproc(
+    args = (1, 'Shady Hollow', 'WunderBar')
+    myCursor.callproc(
         'PROC_UPDATE_LIBRARY_BRANCH', args)
 
     # for result in myCursor.stored_results():
@@ -21,4 +21,3 @@ except:
 
 finally:
     myCursor.close()
-    conn.close()
