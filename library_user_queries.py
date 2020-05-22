@@ -5,4 +5,4 @@ from dbconnect import DBConn
 conn = DBConn()
 cnx = conn.getConnection()
 
-myCursor = cnx.cursor(git )
+myCursor = cnx.cursor()
