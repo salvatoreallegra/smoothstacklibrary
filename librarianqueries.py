@@ -9,4 +9,10 @@ myCursor = cnx.cursor()
 
 
 def getAllLibraries():
+    libraryList = []
     print("Hello Libraries")
+    myCursor.execute("SELECT branchID, branchName FROM tbl_library_branch")
+    myresult = myCursor.fetchall()
+    for x in myresult:
+        libraryList.append(x)
+    return libraryList
