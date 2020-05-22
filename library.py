@@ -1,7 +1,6 @@
 from librarianqueries import *
 from adminqueries import *
-from library_user_queries import *
-
+from borrowerqueries import *
 
 MAIN_LIBRARIAN_CHOICE = 1
 MAIN_ADMINISTRATOR_CHOICE = 2
@@ -19,9 +18,10 @@ def main():
         elif choice == MAIN_ADMINISTRATOR_CHOICE:
             print("Main Admin Choice\n")
         elif choice == MAIN_BORROWER_CHOICE:
-            print("Main Borrower Choice\n")
+            display_borrower_menu()
         elif choice == QUIT_CHOICE:
             print('Exiting the program. . .\n')
+            break
         else:
             print('Error: invalid selection...\n')
 
@@ -74,5 +74,26 @@ def display_library1_menu():
         print("Invalid Selection")
         display_library1_menu()
 
+def display_borrower_menu():
+    choice = 0
+    print("1) Enter Your Card Number:")
+    print("2) Return to main menu")
+    choice = int(input('Enter Your Selection: '))
+    if choice == 1:
+        while (True):
+            cardNum = int(input('Enter Your CardNumber: '))
+            if cardNum == -1:
+                break
+            elif (cardIsValid(cardNum)):
+                display_library_branches_menu()
+                break
+            else:
+                print('Invalid card number')
+                print('Try again or enter -1 to return to previous menu')
+    elif choice == 2:
+        return
+    else:
+        display_borrower_menu()
 
-main()
+if __name__ == "__main__":
+    main()

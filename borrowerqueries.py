@@ -1,6 +1,6 @@
 from dbconnect import DBConn
 
-def checkIfCardIDValid(cardNum):
+def cardIsValid(cardNum):
     conn = DBConn()
     cursor = conn.getCursor()
     cursor.execute(f"select name from tbl_borrower where cardNo = {cardNum}")
@@ -8,6 +8,8 @@ def checkIfCardIDValid(cardNum):
         return False
     else:
         return True
+
+
 
 if __name__ == "__main__":
     print(checkIfCardIDValid('111'))
