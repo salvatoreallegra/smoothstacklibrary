@@ -17,7 +17,7 @@ def main():
         if choice == MAIN_LIBRARIAN_CHOICE:
             display_library1_menu()
         elif choice == MAIN_ADMINISTRATOR_CHOICE:
-            print("Main Admin Choice\n")
+            display_admin_menu()
         elif choice == MAIN_BORROWER_CHOICE:
             print("Main Borrower Choice\n")
         elif choice == QUIT_CHOICE:
@@ -73,6 +73,10 @@ def display_library1_menu():
     else:
         print("Invalid Selection")
         display_library1_menu()
+
+
+def display_main_admin_menu():
+    print("Main Admin Window")
 
 
 main()
