@@ -1,6 +1,7 @@
 from librarianqueries import *
 from adminqueries import *
 from borrowerqueries import *
+from admin_menus import *
 
 MAIN_LIBRARIAN_CHOICE = 1
 MAIN_ADMINISTRATOR_CHOICE = 2
@@ -16,7 +17,7 @@ def main():
         if choice == MAIN_LIBRARIAN_CHOICE:
             display_library1_menu()
         elif choice == MAIN_ADMINISTRATOR_CHOICE:
-            print("Main Admin Choice\n")
+            display_admin_menu()
         elif choice == MAIN_BORROWER_CHOICE:
             display_borrower_menu()
         elif choice == QUIT_CHOICE:
@@ -74,6 +75,7 @@ def display_library1_menu():
         print("Invalid Selection")
         display_library1_menu()
 
+
 def display_borrower_menu():
     print("1) Check out a book")
     print("2) Return a Book")
@@ -127,6 +129,6 @@ def display_borrower_book_menu(branchName):
         print(f"{i}) {x[0]}")
         i += 1
 
+
 if __name__ == "__main__":
     main()
-
