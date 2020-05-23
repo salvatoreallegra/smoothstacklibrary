@@ -46,6 +46,7 @@ def display_admin_menu_authors():
     elif choice == 2:
         print("Update Book")
     elif choice == 3:
+        getAllBooksAndAuthors()
         print("Delete Book")
     elif choice == 4:
         display_admin_menu()
