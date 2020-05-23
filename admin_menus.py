@@ -143,25 +143,22 @@ def display_admin_menu_override_due_date():
     if choice == 1:
         print("Listing Borrowers...")
         getAllBorrowersWithBooksDue()
-        borrowerId = int(input("Enter Borrower Id..."))
+        bookId = int(input("Enter Book Id..."))
         cardNumber = int(input("Enter Card Number..."))
-<<<<<<< HEAD
-=======
 
         newDueDate = input("Enter New Due Date in format YYYY-MM-DD... ")
->>>>>>> 9b2fd2ee6f49e138318357fa4c3283b17a48edbe
 
         format_str = '%Y-%m-%d'  # The format
 
         updateDate = datetime.strptime(newDueDate, format_str)
 
-        updateDate.date()
+        updatedDate = updateDate.date()
 
         print(updateDate.date())
-        print(borrowerId)
+        print(bookId)
         print(cardNumber)
         print(newDueDate)
-        updateDueDate(borrowerId, cardNumber)
+        updateDueDate(bookId, cardNumber, updatedDate)
 
     elif choice == 2:
         display_admin_menu()

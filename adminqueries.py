@@ -8,6 +8,29 @@ myCursor = cnx.cursor()
 # Get all borrowers from library database
 
 
+#####################################################
+# All Functions for Books and Authors
+#####################################################
+
+
+#####################################################
+# All Functions for Publishers
+#####################################################
+
+
+#####################################################
+# All Functions for Branches
+#####################################################
+
+#####################################################
+# All Functions for Borrowers
+#####################################################
+
+
+#####################################################
+# All Functions for Borrower Due Date
+#####################################################
+
 def getAllBorrowersWithBooksDue():
 
     query = ("SELECT tbl_book_loans.bookId as bookId, tbl_book_loans.cardNo as cardNo, name, title, dueDate "
@@ -23,28 +46,17 @@ def getAllBorrowersWithBooksDue():
         print(bookId, cardNo, name, title, dueDate)
         print("")
 
-    # myCursor.callproc('get_book_loans')
-
-    # for result in myCursor.stored_results():
-    #     print(result.fetchall())
     if cnx.is_connected():
         print('still connected')
     cnx.commit()
-    # myCursor.execute("SELECT * FROM tbl_borrower")
-    # myresult = myCursor.fetchall()
-    # for x in myresult:
-    #     print(x)
 
 
-def updateDueDate(bookId, cardNo):
-    args = [bookId, cardNo, ]
+def updateDueDate(bookId, cardNo, newDueDate):
+    args = [bookId, cardNo, newDueDate, 0]
 
     myCursor.callproc(
-        'PROC_UPDATE_LIBRARY_BRANCH', args)
-
+        'update_due_date', args)
+    myCursor.execute()
     for result in myCursor.stored_results():
         print(result.fetchall())
-
-    if cnx.is_connected():
-        print('still connected')
     cnx.commit()
