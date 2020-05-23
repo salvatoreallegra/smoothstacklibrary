@@ -107,17 +107,18 @@ def getAllBorrowersWithBooksDue():
         print(bookId, cardNo, name, title, dueDate)
         print("")
 
-    if cnx.is_connected():
-        print('still connected')
     cnx.commit()
 
 
 def updateDueDate(bookId, cardNo, newDueDate):
     args = [bookId, cardNo, newDueDate, 0]
 
-    myCursor.callproc(
+    resultArgs = myCursor.callproc(
         'update_due_date', args)
-    myCursor.execute()
-    for result in myCursor.stored_results():
-        print(result.fetchall())
+
+    print(resultArgs[3])
+    # myCursor.execute()
+
+    # for result in myCursor.stored_results():
+    #     print(result.fetchall())
     cnx.commit()
