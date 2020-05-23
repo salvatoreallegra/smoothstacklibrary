@@ -8,7 +8,7 @@ cnx = conn.getConnection()
 myCursor = cnx.cursor()
 
 
-def getAllLibraries():
+def getAllLibrariesgit push():
     libraryList = []
     print("Hello Libraries")
     myCursor.execute("SELECT branchID, branchName FROM tbl_library_branch")
