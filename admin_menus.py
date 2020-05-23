@@ -1,4 +1,5 @@
 from library import *
+from adminqueries import *
 
 
 # Main Menu for Admin functions
@@ -137,8 +138,13 @@ def display_admin_menu_override_due_date():
     print("3) Return to Main Menu")
 
     choice = int(input("Enter Selection "))
+    borrowerId = 0
     if choice == 1:
-        print("Add Borrow")
+        print("Listing Borrowers...")
+        getAllBorrowersWithBooksDue()
+        borrowerId = int(input("Enter Borrower Id..."))
+        print(borrowerId)
+
     elif choice == 2:
         display_admin_menu()
     elif choice == 3:
