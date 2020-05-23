@@ -38,6 +38,7 @@ def getAllBorrowersWithBooksDue():
 
 def updateDueDate(bookId, cardNo):
     args = [bookId, cardNo, ]
+
     myCursor.callproc(
         'PROC_UPDATE_LIBRARY_BRANCH', args)
 
