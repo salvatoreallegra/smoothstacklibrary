@@ -1,7 +1,6 @@
 from librarianqueries import *
 from adminqueries import *
-from library_user_queries import *
-
+from borrowerqueries import *
 
 MAIN_LIBRARIAN_CHOICE = 1
 MAIN_ADMINISTRATOR_CHOICE = 2
@@ -19,9 +18,10 @@ def main():
         elif choice == MAIN_ADMINISTRATOR_CHOICE:
             display_admin_menu()
         elif choice == MAIN_BORROWER_CHOICE:
-            print("Main Borrower Choice\n")
+            display_borrower_menu()
         elif choice == QUIT_CHOICE:
             print('Exiting the program. . .\n')
+            break
         else:
             print('Error: invalid selection...\n')
 
@@ -35,36 +35,61 @@ def display_main_menu():
     print("4) Quit")
 
 
-def display_library_branches_menu():
+def display_admin_menu():
     choice = 0
-    menuItemNo = 1
-    primaryKey = 0
-    selectionPrimaryKeyDictionary = {}
+    print("1) Add/Update/Delete Book and Author")
+    print("2) Add/Update/Delete Publishers")
+    print("3 Add/Update/Delete Library Branches")
+    print("4 Add/Update/Delete Borrowers")
+    print("5 Override Due Date for Borrowers")
+    print("6 Return to Main Menu")
+    if choice == 1:
+        print("Crud book/author")
+    elif choice == 2:
+        print("Crud Pub")
+    elif choice == 3:
+        print("Crud Branches"))
+    elif choice == 4:
+        main()
+    elif choice == 5:
+        main()
+    elif choice == 6:
+        main()
+    else:
+        print("Invalid Selection")
+        display_admin_menu()
+
+
+def display_library_branches_menu():
+    choice=0
+    menuItemNo=1
+    primaryKey=0
+    selectionPrimaryKeyDictionary={}
 
     # Call getAllLibraries located in librarianqueries.py
-    libraryList = getAllLibraries()
+    libraryList=getAllLibraries()
     for library in libraryList:
         # print out the second index in the list which will always be the library name
         print(str(menuItemNo) + " " + library[1])
-        selectionPrimaryKeyDictionary[str(menuItemNo)] = library[0]
-        menuItemNo = menuItemNo + 1
+        selectionPrimaryKeyDictionary[str(menuItemNo)]=library[0]
+        menuItemNo=menuItemNo + 1
         print(selectionPrimaryKeyDictionary)
 
-    choice = input("Enter Your Selection: ")
+    choice=input("Enter Your Selection: ")
 
     # loop through map
     for x in selectionPrimaryKeyDictionary:
         if x == choice:
-            primaryKey = selectionPrimaryKeyDictionary[x]
+            primaryKey=selectionPrimaryKeyDictionary[x]
 
             print(primaryKey)
 
 
 def display_library1_menu():
-    choice = 0
+    choice=0
     print("1) Enter the branch you manage")
     print("2) Return to main menu")
-    choice = int(input('Enter Your Selection '))
+    choice=int(input('Enter Your Selection '))
     if choice == 1:
         print("Librarian SubMenu\n")
         display_library_branches_menu()
@@ -75,8 +100,27 @@ def display_library1_menu():
         display_library1_menu()
 
 
-def display_main_admin_menu():
-    print("Main Admin Window")
+def display_borrower_menu():
+    choice=0
+    print("1) Enter Your Card Number:")
+    print("2) Return to main menu")
+    choice=int(input('Enter Your Selection: '))
+    if choice == 1:
+        while (True):
+            cardNum=int(input('Enter Your CardNumber: '))
+            if cardNum == -1:
+                break
+            elif (cardIsValid(cardNum)):
+                display_library_branches_menu()
+                break
+            else:
+                print('Invalid card number')
+                print('Try again or enter -1 to return to previous menu')
+    elif choice == 2:
+        return
+    else:
+        display_borrower_menu()
 
 
-main()
+if __name__ == "__main__":
+    main()
