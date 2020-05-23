@@ -1,5 +1,6 @@
 from library import *
 from adminqueries import *
+from datetime import datetime
 
 
 # Main Menu for Admin functions
@@ -143,7 +144,18 @@ def display_admin_menu_override_due_date():
         print("Listing Borrowers...")
         getAllBorrowersWithBooksDue()
         borrowerId = int(input("Enter Borrower Id..."))
+        cardNumber = int(input("Enter Card Number..."))
+        format_str = '%Y%m%d'  # The format
+
+        datetime_obj = datetime.datetime.strptime(date_str, format_str)
+        print(datetime_obj.date())
+        newDueDate = datetime.date(
+            input("Enter New Due Date in formay YYYY-MM-DD"))
+
         print(borrowerId)
+        print(cardNumber)
+        print(newDueDate)
+        updateDueDate(borrowerId, cardNumber)
 
     elif choice == 2:
         display_admin_menu()
