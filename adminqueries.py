@@ -98,20 +98,27 @@ def deleteAuthor(authorId):
 
 def getAllBorrowersWithBooksDue():
 
-    query = ("SELECT tbl_book_loans.bookId as bookId, tbl_book_loans.cardNo as cardNo, name, title, dueDate "
-             "FROM tbl_borrower "
-             "Inner Join tbl_book_loans on tbl_borrower.cardNo = tbl_book_loans.cardNo "
-             "Inner join tbl_book on tbl_book_loans.bookId = tbl_book.bookId "
-             )
+    try:
 
-    myCursor.execute(query)
+        query = ("SELECT tbl_book_loans.bookId as bookId, tbl_book_loans.cardNo as cardNo, name, title, dueDate "
+                 "FROM tbl_borrower "
+                 "Inner Join tbl_book_loans on tbl_borrower.cardNo = tbl_book_loans.cardNo "
+                 "Inner join tbl_book on tbl_book_loans.bookId = tbl_book.bookId "
+                 )
 
-    for (bookId, cardNo, name, title, dueDate) in myCursor:
-        print("Book Id", "Card #", "Borrower Name", "Book Name", "Due Date")
-        print(bookId, cardNo, name, title, dueDate)
-        print("")
+        myCursor.execute(query)
 
-    cnx.commit()
+        for (bookId, cardNo, name, title, dueDate) in myCursor:
+            print("Book Id", "Card #", "Borrower Name", "Book Name", "Due Date")
+            print(bookId, cardNo, name, title, dueDate)
+            print("")
+
+    except:
+        print("Could not get borrowers with Books Due")
+        getAllBorrowersWithBooksDue()
+
+    finally:
+        cnx.commit()
 
 
 def updateDueDate(bookId, cardNo, newDueDate):
