@@ -22,7 +22,7 @@ class DBConn:
         self.__cnx.close()
 
     """
-     method takes no arguments. must have se
+     method takes no arguments.
      returns database connection object 
     """
     def getConnection(self):
@@ -31,6 +31,8 @@ class DBConn:
     def getCursor(self):
         return self.__cnx.cursor()
 
+    def commit(self):
+        self.__cnx.commit()
 
 if __name__ == "__main__":
     cnx = DBConn()
