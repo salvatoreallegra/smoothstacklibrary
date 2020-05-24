@@ -1,5 +1,4 @@
 import mysql.connector
-
 from dbconnect import DBConn
 
 
@@ -9,7 +8,7 @@ def getAllLibraries():
     myCursor = cnx.cursor()
     libraryList = []
     print("Hello Libraries")
-    myCursor.execute("SELECT branchID, branchName FROM tbl_library_branch")
+    myCursor.execute("SELECT branchName FROM tbl_library_branch")
     myresult = myCursor.fetchall()
     for x in myresult:
         libraryList.append(x)
