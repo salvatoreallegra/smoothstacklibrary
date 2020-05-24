@@ -13,7 +13,7 @@ def getListOfBooksFromBranch(branchName):
     conn = DBConn()
     cursor = conn.getCursor()
     cursor.execute(f"""
-        select title  
+        select title, tb.bookId
         from tbl_book tb 
         inner join tbl_book_copies tbc 
         on tb.bookId = tbc.bookId 
@@ -23,8 +23,13 @@ def getListOfBooksFromBranch(branchName):
     """)
     return cursor.fetchall()
 
-def addBookIntoBookLoans(bookName):
-    pass
+def addBookIntoBookLoans(bookId, branchName, cardNum):
+    conn = DBConn()
+    cursor = conn.getCursor()
+    args = [bookId, branchName, cardNum, 0]
+    cursor.callproc('CheckOutBook', args)
+    conn.commit()
 
 if __name__ == "__main__":
-    print(checkIfCardIDValid('111'))
+    addBookIntoBookLoans(1, 'Sleepy Hollow Library', 111)
+
