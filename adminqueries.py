@@ -172,7 +172,7 @@ def deleteBranch():
 
 
 def getAllBorrowers():
-    query = ("select cardNo, name, address, phone
+    query = ("select cardNo, name, address, phone "
              "from tbl_borrower")
     myCursor.execute(query)
 
