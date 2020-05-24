@@ -13,21 +13,25 @@ myCursor = cnx.cursor()
 #####################################################
 
 def getAllBooksAndAuthors():
-    query = ("SELECT b.bookId, b.title, a.authorName "
-             "FROM library.tbl_book as b "
-             "INNER JOIN tbl_book_authors ba on ba.bookId = b.bookId "
-             "INNER JOIN tbl_author a on ba.authorId = a.authorId ")
 
-    myCursor.execute(query)
+    try:
+        query = ("SELECT b.bookId, b.title, a.authorName "
+                 "FROM library.tbl_book as b "
+                 "INNER JOIN tbl_book_authors ba on ba.bookId = b.bookId "
+                 "INNER JOIN tbl_author a on ba.authorId = a.authorId ")
 
-    for (bookId, title, authorName) in myCursor:
-        print("Book Id", "Book Title", "Author Name")
-        print(bookId, title, authorName)
-        print("")
+        myCursor.execute(query)
 
-    if cnx.is_connected():
-        print('still connected')
-    cnx.commit()
+        for (bookId, title, authorName) in myCursor:
+            print("Book Id", "Book Title", "Author Name")
+            print(bookId, title, authorName)
+            print("")
+
+        cnx.commit()
+    except:
+        print("Error getting books and authors, please re-enter data")
+    finally:
+        myCursor.close()
 
 
 def addBookAndAuthor(bookId):
@@ -212,31 +216,57 @@ def deleteBranch():
 
 def getAllBorrowersWithBooksDue():
 
-    query = ("SELECT tbl_book_loans.bookId as bookId, tbl_book_loans.cardNo as cardNo, name, title, dueDate "
-             "FROM tbl_borrower "
-             "Inner Join tbl_book_loans on tbl_borrower.cardNo = tbl_book_loans.cardNo "
-             "Inner join tbl_book on tbl_book_loans.bookId = tbl_book.bookId "
-             )
+    try:
 
-    myCursor.execute(query)
+        query = ("SELECT tbl_book_loans.bookId as bookId, tbl_book_loans.cardNo as cardNo, name, title, dueDate "
+                 "FROM tbl_borrower "
+                 "Inner Join tbl_book_loans on tbl_borrower.cardNo = tbl_book_loans.cardNo "
+                 "Inner join tbl_book on tbl_book_loans.bookId = tbl_book.bookId "
+                 )
 
-    for (bookId, cardNo, name, title, dueDate) in myCursor:
-        print("Book Id", "Card #", "Borrower Name", "Book Name", "Due Date")
-        print(bookId, cardNo, name, title, dueDate)
-        print("")
+        myCursor.execute(query)
 
-    cnx.commit()
+        if(myCursor.fetchall):
+
+            for (bookId, cardNo, name, title, dueDate) in myCursor:
+                print("Book Id", "Card #", "Borrower Name",
+                      "Book Name", "Due Date")
+                print(bookId, cardNo, name, title, dueDate)
+                print("")
+            return True
+
+        else:
+            return False
+
+    except:
+        print("Could not get borrowers with Books Due")
+
+    finally:
+        cnx.commit()
 
 
 def updateDueDate(bookId, cardNo, newDueDate):
-    args = [bookId, cardNo, newDueDate, 0]
 
-    resultArgs = myCursor.callproc(
-        'update_due_date', args)
+    try:
+        args = [bookId, cardNo, newDueDate, ]
 
-    print(resultArgs[3])
+        resultArgs = myCursor.callproc(
+            'update_due_date', args)
+        print("Due Date Updated Successfully")
+        # count = count = int(myCursor.rowcount)
+        # print(str("Row Count"), count)
+        # if count == 0:
+        #     print("No records where updated, re-enter data..")
+
+    except mysql.connector.Error as err:
+        print(err)
+
+    # print(resultArgs[3])
+    finally:
+
+        cnx.commit()
+
     # myCursor.execute()
 
     # for result in myCursor.stored_results():
     #     print(result.fetchall())
-    cnx.commit()

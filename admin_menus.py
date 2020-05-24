@@ -131,6 +131,10 @@ def display_admin_menu_borrowers():
         print("Invalid Selection")
         display_admin_menu_authors()
 
+#####################################################
+# Menu to update due date
+#####################################################
+
 
 def display_admin_menu_override_due_date():
     choice = 0
@@ -144,23 +148,20 @@ def display_admin_menu_override_due_date():
     if choice == 1:
         print("Listing Borrowers...")
         getAllBorrowersWithBooksDue()
+
         bookId = int(input("Enter Book Id..."))
         cardNumber = int(input("Enter Card Number..."))
-
-        newDueDate = input("Enter New Due Date in format YYYY-MM-DD... ")
-
+        newDueDate = input(
+            "Enter New Due Date in format YYYY-MM-DD... ")
         format_str = '%Y-%m-%d'  # The format
-
         updateDate = datetime.strptime(newDueDate, format_str)
-
         updatedDate = updateDate.date()
-
-        print(updateDate.date())
-        print(bookId)
-        print(cardNumber)
-        print(newDueDate)
+        # print(updateDate.date())
+        # print(bookId)
+        # print(cardNumber)
+        # print(newDueDate)
         updateDueDate(bookId, cardNumber, updatedDate)
-
+        display_admin_menu_override_due_date()
     elif choice == 2:
         display_admin_menu()
     elif choice == 3:
