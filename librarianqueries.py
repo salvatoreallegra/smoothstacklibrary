@@ -2,13 +2,11 @@ import mysql.connector
 
 from dbconnect import DBConn
 
-conn = DBConn()
-cnx = conn.getConnection()
 
-myCursor = cnx.cursor()
-
-
-def getAllLibrariesgit push():
+def getAllLibraries():
+    conn = DBConn()
+    cnx = conn.getConnection()
+    myCursor = cnx.cursor()
     libraryList = []
     print("Hello Libraries")
     myCursor.execute("SELECT branchID, branchName FROM tbl_library_branch")
