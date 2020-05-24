@@ -34,13 +34,30 @@ def getAllBooksAndAuthors():
         myCursor.close()
 
 
-def addBookAndAuthor(bookId):
-    args = [bookId]
-    myCursor.callproc(
-        'add_new_book_and_author', args)
-    myCursor.execute()
-    cnx.commit()
+def addBookAndAuthor(bookId, authorName, publisherName):
+    boolAuthorExists = authorExists(authorName)
+    if boolAuthorExists:
+        print("This Author exists")
+    else:
+        print("Doesn't exist")
+
+        # args = [bookId]
+        # myCursor.callproc(
+        #     'add_new_book_and_author', args)
+        # myCursor.execute()
+        # cnx.commit()
     print('Book and Author Added Successfully...')
+
+
+def authorExists(authorName):
+    query = (f"""SELECT authorName 
+              FROM tbl_author
+              WHERE authorName = '{authorName}' """)
+    myCursor.execute(query)
+    if not myCursor.fetchall():
+        return False
+    else:
+        return True
 
 
 def updateBook(bookId):
@@ -257,16 +274,10 @@ def updateDueDate(bookId, cardNo, newDueDate):
         # print(str("Row Count"), count)
         # if count == 0:
         #     print("No records where updated, re-enter data..")
-
+        cnx.commit()
     except mysql.connector.Error as err:
         print(err)
 
     # print(resultArgs[3])
-    finally:
-
-        cnx.commit()
-
-    # myCursor.execute()
-
-    # for result in myCursor.stored_results():
-    #     print(result.fetchall())
+if __name__ == "__main__":
+    authorExists("Stephan King")

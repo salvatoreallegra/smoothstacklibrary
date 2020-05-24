@@ -42,7 +42,11 @@ def display_admin_menu_authors():
 
     choice = int(input("Enter Selection "))
     if choice == 1:
-        print("Add Book")
+        bookTitle = input("Enter book title")
+        authorName = input("Enter author name")
+        publisherName = input("Enter publisher name")
+        addBookAndAuthor(bookTitle, authorName, publisherName)
+
     elif choice == 2:
         print("Update Book")
     elif choice == 3:
@@ -148,7 +152,6 @@ def display_admin_menu_override_due_date():
     if choice == 1:
         print("Listing Borrowers...")
         getAllBorrowersWithBooksDue()
-
         bookId = int(input("Enter Book Id..."))
         cardNumber = int(input("Enter Card Number..."))
         newDueDate = input(
@@ -156,10 +159,6 @@ def display_admin_menu_override_due_date():
         format_str = '%Y-%m-%d'  # The format
         updateDate = datetime.strptime(newDueDate, format_str)
         updatedDate = updateDate.date()
-        # print(updateDate.date())
-        # print(bookId)
-        # print(cardNumber)
-        # print(newDueDate)
         updateDueDate(bookId, cardNumber, updatedDate)
         display_admin_menu_override_due_date()
     elif choice == 2:
