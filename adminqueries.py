@@ -111,6 +111,7 @@ def getAllBorrowersWithBooksDue():
 
 
 def updateDueDate(bookId, cardNo, newDueDate):
+
     args = [bookId, cardNo, newDueDate, 0]
 
     resultArgs = myCursor.callproc(
