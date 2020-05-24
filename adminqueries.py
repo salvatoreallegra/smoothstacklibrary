@@ -79,13 +79,131 @@ def deleteAuthor(authorId):
 # All Functions for Publishers
 #####################################################
 
+def getAllPublishers():
+    query = ("select publisherId, publisherName, publisherAddress, publisherPhone"
+             "from tbl_publisher")
+    myCursor.execute(query)
+
+    for (publisherId, publisherName, publisherAddress, publisherPhone) in myCursor:
+        print("PublisherId", "Publisher Name",
+              "Publisher Address", "Publisher Phone")
+        print(publisherId, publisherName, publisherAddress, publisherPhone)
+        print("")
+
+    if cnx.is_connected():
+        print('still connected')
+    cnx.commit()
+
+
+def addPublisher():
+    args = []
+    myCursor.callproc(
+        'add_publisher', args)
+    myCursor.execute()
+    cnx.commit()
+    print('Publisher has been successfully added...')
+
+
+def updatePublisher():
+    args = []
+    myCursor.callproc(
+        'update_publisher', args)
+    myCursor.execute()
+    cnx.commit()
+
+
+def deletePublisher():
+    args = []
+    myCursor.callproc(
+        'delete_publisher', args)
+    myCursor.execute()
+    cnx.commit()
+
 #####################################################
 # All Functions for Branches
 #####################################################
 
+
+def getAllBranches():
+    query = ("select branchId, branchName, branchAddress"
+             "from tbl_library_branch")
+    myCursor.execute(query)
+
+    for (branchId, branchName, branchAddress) in myCursor:
+        print("Branch Id", "Branch Name", "Branch Address")
+        print(branchId, branchName, branchAddress)
+        print("")
+
+    if cnx.is_connected():
+        print('still connected')
+    cnx.commit()
+
+
+def addBranch():
+    args = []
+    myCursor.callproc(
+        'add_branch', args)
+    myCursor.execute()
+    cnx.commit()
+
+
+def updateBranch():
+    args = []
+    myCursor.callproc(
+        'update_branch', args)
+    myCursor.execute()
+    cnx.commit()
+
+
+def deleteBranch():
+    args = []
+    myCursor.callproc(
+        'delete_branch', args)
+    myCursor.execute()
+    cnx.commit()
+
 #####################################################
 # All Functions for Borrowers
 #####################################################
+
+
+def getAllBorrowers():
+    query = ("select cardNo, name, address, phone
+             "from tbl_borrower")
+    myCursor.execute(query)
+
+    for (branchId, branchName, branchAddress) in myCursor:
+        print("Branch Id", "Branch Name", "Branch Address")
+        print(branchId, branchName, branchAddress)
+        print("")
+
+    if cnx.is_connected():
+        print('still connected')
+    cnx.commit()
+
+
+def addBorrower():
+    args = []
+    myCursor.callproc(
+        'add_borrower', args)
+    myCursor.execute()
+    cnx.commit()
+
+
+def updateBorrower():
+    args = []
+    myCursor.callproc(
+        'update_borrower', args)
+    myCursor.execute()
+    cnx.commit()
+
+
+def deleteBranch():
+    args = []
+    myCursor.callproc(
+        'delete_borrower', args)
+    myCursor.execute()
+    cnx.commit()
 
 #####################################################
 # All Functions for Borrower Due Date
