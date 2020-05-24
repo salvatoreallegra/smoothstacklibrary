@@ -129,14 +129,26 @@ def getAllBorrowersWithBooksDue():
 
 def updateDueDate(bookId, cardNo, newDueDate):
 
-    args = [bookId, cardNo, newDueDate, 0]
+    try:
+        args = [bookId, cardNo, newDueDate, ]
 
-    resultArgs = myCursor.callproc(
-        'update_due_date', args)
+        resultArgs = myCursor.callproc(
+            'update_due_date', args)
+        print("Due Date Updated Successfully")
+        # count = count = int(myCursor.rowcount)
+        # print(str("Row Count"), count)
+        # if count == 0:
+        #     print("No records where updated, re-enter data..")
 
-    print(resultArgs[3])
+    except mysql.connector.Error as err:
+        print(err)
+
+    # print(resultArgs[3])
+    finally:
+
+        cnx.commit()
+
     # myCursor.execute()
 
     # for result in myCursor.stored_results():
     #     print(result.fetchall())
-    cnx.commit()
