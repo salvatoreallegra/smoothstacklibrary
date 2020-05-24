@@ -13,21 +13,25 @@ myCursor = cnx.cursor()
 #####################################################
 
 def getAllBooksAndAuthors():
-    query = ("SELECT b.bookId, b.title, a.authorName "
-             "FROM library.tbl_book as b "
-             "INNER JOIN tbl_book_authors ba on ba.bookId = b.bookId "
-             "INNER JOIN tbl_author a on ba.authorId = a.authorId ")
 
-    myCursor.execute(query)
+    try:
+        query = ("SELECT b.bookId, b.title, a.authorName "
+                 "FROM library.tbl_book as b "
+                 "INNER JOIN tbl_book_authors ba on ba.bookId = b.bookId "
+                 "INNER JOIN tbl_author a on ba.authorId = a.authorId ")
 
-    for (bookId, title, authorName) in myCursor:
-        print("Book Id", "Book Title", "Author Name")
-        print(bookId, title, authorName)
-        print("")
+        myCursor.execute(query)
 
-    if cnx.is_connected():
-        print('still connected')
-    cnx.commit()
+        for (bookId, title, authorName) in myCursor:
+            print("Book Id", "Book Title", "Author Name")
+            print(bookId, title, authorName)
+            print("")
+
+        cnx.commit()
+    except:
+        print("Error getting books and authors, please re-enter data")
+    finally:
+        myCursor.close()
 
 
 def addBookAndAuthor(bookId):
