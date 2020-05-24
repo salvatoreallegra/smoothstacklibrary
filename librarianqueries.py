@@ -7,7 +7,6 @@ def getAllLibraries():
     cnx = conn.getConnection()
     myCursor = cnx.cursor()
     libraryList = []
-    print("Hello Libraries")
     myCursor.execute("SELECT branchName FROM tbl_library_branch")
     myresult = myCursor.fetchall()
     for x in myresult:
