@@ -186,11 +186,10 @@ def getAllBorrowers():
     cnx.commit()
 
 
-def addBorrower():
-    args = []
+def addBorrower(cardNo, name, address, phone):
+    args = [cardNo, name, address, phone]
     myCursor.callproc(
         'add_borrower', args)
-    myCursor.execute()
     cnx.commit()
 
 
