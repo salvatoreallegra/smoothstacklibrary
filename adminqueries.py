@@ -176,9 +176,9 @@ def getAllBorrowers():
              "from tbl_borrower")
     myCursor.execute(query)
 
-    for (branchId, branchName, branchAddress) in myCursor:
-        print("Branch Id", "Branch Name", "Branch Address")
-        print(branchId, branchName, branchAddress)
+    for (cardNo, name, address, phone) in myCursor:
+        print("Card No", "Name", "Address", "Phone")
+        print(cardNo, name, address, phone)
         print("")
 
     if cnx.is_connected():
@@ -202,7 +202,7 @@ def updateBorrower():
     cnx.commit()
 
 
-def deleteBranch():
+def deleteBorrower():
     args = []
     myCursor.callproc(
         'delete_borrower', args)
