@@ -108,14 +108,20 @@ def getAllBorrowersWithBooksDue():
 
         myCursor.execute(query)
 
-        for (bookId, cardNo, name, title, dueDate) in myCursor:
-            print("Book Id", "Card #", "Borrower Name", "Book Name", "Due Date")
-            print(bookId, cardNo, name, title, dueDate)
-            print("")
+        if(myCursor.fetchall):
+
+            for (bookId, cardNo, name, title, dueDate) in myCursor:
+                print("Book Id", "Card #", "Borrower Name",
+                      "Book Name", "Due Date")
+                print(bookId, cardNo, name, title, dueDate)
+                print("")
+            return True
+
+        else:
+            return False
 
     except:
         print("Could not get borrowers with Books Due")
-        getAllBorrowersWithBooksDue()
 
     finally:
         cnx.commit()

@@ -143,18 +143,28 @@ def display_admin_menu_override_due_date():
     borrowerId = 0
     if choice == 1:
         print("Listing Borrowers...")
-        getAllBorrowersWithBooksDue()
-        bookId = int(input("Enter Book Id..."))
-        cardNumber = int(input("Enter Card Number..."))
-        newDueDate = input("Enter New Due Date in format YYYY-MM-DD... ")
-        format_str = '%Y-%m-%d'  # The format
-        updateDate = datetime.strptime(newDueDate, format_str)
-        updatedDate = updateDate.date()
-        print(updateDate.date())
-        print(bookId)
-        print(cardNumber)
-        print(newDueDate)
-        updateDueDate(bookId, cardNumber, updatedDate)
+        hasRecords = getAllBorrowersWithBooksDue()
+        if(hasRecords):
+            try:
+                bookId = int(input("Enter Book Id..."))
+                cardNumber = int(input("Enter Card Number..."))
+                newDueDate = input(
+                    "Enter New Due Date in format YYYY-MM-DD... ")
+                format_str = '%Y-%m-%d'  # The format
+                updateDate = datetime.strptime(newDueDate, format_str)
+                updatedDate = updateDate.date()
+                print(updateDate.date())
+                print(bookId)
+                print(cardNumber)
+                print(newDueDate)
+                updateDueDate(bookId, cardNumber, updatedDate)
+            except:
+                print("Invalid input, please try again...")
+                print("")
+                display_admin_menu_override_due_date()
+        else:
+            print("There are no Borrowers in the system...going back to admin functions")
+            display_admin_menu()
 
     elif choice == 2:
         display_admin_menu()
