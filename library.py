@@ -2,6 +2,7 @@ from adminqueries import *
 from admin_menus import *
 from borrower_menus import display_borrower_menu
 from librarianqueries import *
+from librarian_menu import *
 
 MAIN_LIBRARIAN_CHOICE = 1
 MAIN_ADMINISTRATOR_CHOICE = 2
