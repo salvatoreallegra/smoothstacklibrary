@@ -126,11 +126,24 @@ def display_admin_menu_branches():
 
     choice = int(input("Enter Selection "))
     if choice == 1:
-        print("Add Book")
+        print('Adding a new Branch...')
+        branchName = input('Please enter the new branch name... ')
+        branchAddress = input('Please enter the new branch address... ')
+        addBranch(branchName, branchAddress)
     elif choice == 2:
-        print("Update Book")
+        print("Updating Book... ")
+        getAllBranches()
+        branchId = int(
+            input('Please enter the branch id number you would like to change... '))
+        branchName = input('Please enter the new branch name... ')
+        branchAddress = input('Please enter the new branch address... ')
+        updateBranch(branchId, branchName, branchAddress)
     elif choice == 3:
-        print("Delete Book")
+        print("Deleting Book...")
+        getAllBranches()
+        branchId = int(
+            input('Please enter the id number of the branch you would like to delete... '))
+        deleteBranch(branchId)
     elif choice == 4:
         display_admin_menu()
     elif choice == 5:
