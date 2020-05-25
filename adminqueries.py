@@ -204,26 +204,35 @@ def getAllBorrowers():
 
 
 def addBorrower(cardNo, name, address, phone):
-    args = [cardNo, name, address, phone]
-    myCursor.callproc(
-        'add_borrower', args)
-    cnx.commit()
+    try:
+        args = [cardNo, name, address, phone]
+        myCursor.callproc(
+            'add_borrower', args)
+        cnx.commit()
+    except mysql.connector.Error as err:
+        print(err)
 
 
-def updateBorrower():
-    args = []
-    myCursor.callproc(
-        'update_borrower', args)
-    myCursor.execute()
-    cnx.commit()
+def updateBorrower(cardNo, name, address, phone):
+    try:
+        args = [cardNo, name, address, phone]
+        myCursor.callproc(
+            'update_borrower', args)
+        cnx.commit()
+        print('Updated Successfully')
+    except mysql.connector.Error as err:
+        print(err)
 
 
-def deleteBorrower():
-    args = []
-    myCursor.callproc(
-        'delete_borrower', args)
-    myCursor.execute()
-    cnx.commit()
+def deleteBorrower(cardNo):
+    try:
+        args = [cardNo]
+        myCursor.callproc(
+            'delete_borrower', args)
+        cnx.commit()
+        print('deleted successfully')
+    except mysql.connector.Error as err:
+        print(err)
 
 #####################################################
 # All Functions for Borrower Due Date
@@ -276,6 +285,7 @@ def updateDueDate(bookId, cardNo, newDueDate):
         cnx.commit()
     except mysql.connector.Error as err:
         print(err)
+
 
     # print(resultArgs[3])
 if __name__ == "__main__":
