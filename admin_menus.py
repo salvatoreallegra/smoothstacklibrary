@@ -150,12 +150,35 @@ def display_admin_menu_borrowers():
     print("5) Return to Main Menu")
 
     choice = int(input("Enter Selection "))
+
     if choice == 1:
-        print("Add Borrow")
+        print("Adding a borrower... ")
+        cardNo = int(
+            input('Please input a card number for the user(3 numbers only)... '))
+        name = input('Please input the borrowers name... ')
+        address = input('Please input the borrowers address... ')
+        phone = input(
+            'Please input the borrowers phone number ###-###-####... ')
+        addBorrower(cardNo, name, address, phone)
+
     elif choice == 2:
-        print("Update Borrow")
+        print("Updating a  Borrower... ")
+        getAllBorrowers()
+        cardNo = int(
+            input("Please input a card number for the user(3 numbers only)... "))
+        name = input('Please input the borrowers name... ')
+        address = input('Please input the borrowers address... ')
+        phone = input(
+            'Please input the borrowers phone number ###-###-####... ')
+        updateBorrower(cardNo, name, address, phone)
+
     elif choice == 3:
-        print("Delete Borrow")
+        print('Deleting a Borrower... ')
+        getAllBorrowers()
+        cardNo = int(
+            input("Please input a card number for the user(3 numbers only)... "))
+        deleteBorrower(cardNo)
+
     elif choice == 4:
         display_admin_menu()
     elif choice == 5:
