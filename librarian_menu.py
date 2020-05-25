@@ -27,7 +27,8 @@ def lib2():
     if 0 < int(select) < int(len(menu1)):
         branch = menu1[int(select)-1]
     elif int(select) == len(menu1):
-        print("PlaceHolderExit")  # takes user back to main menu
+        # print("PlaceHolderExit")  # takes user back to main menu
+        return
     else:
         print("Invalid Selection")
 
