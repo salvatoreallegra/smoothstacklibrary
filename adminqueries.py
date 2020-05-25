@@ -170,7 +170,7 @@ def deletePublisher():
 
 
 def getAllBranches():
-    query = ("select branchId, branchName, branchAddress"
+    query = ("select *"
              "from tbl_library_branch")
     myCursor.execute(query)
 
@@ -182,28 +182,35 @@ def getAllBranches():
     cnx.commit()
 
 
-def addBranch():
-    args = []
-    myCursor.callproc(
-        'add_branch', args)
-    myCursor.execute()
-    cnx.commit()
+def addBranch(branchName, branchAddress):
+    try:
+        args = [branchName, branchAddress]
+        myCursor.callproc(
+            'add_library_branch', args)
+
+        cnx.commit()
+    except mysql.connector.Error as err:
+        print(err)
 
 
-def updateBranch():
-    args = []
-    myCursor.callproc(
-        'update_branch', args)
-    myCursor.execute()
-    cnx.commit()
+def updateBranch(branchId, branchName, branchAddress):
+    try:
+        args = [branchId, branchName, branchAddress]
+        myCursor.callproc(
+            'update_branch', args)
+        cnx.commit()
+    except mysql.connector.Error as err:
+        print(err)
 
 
-def deleteBranch():
-    args = []
-    myCursor.callproc(
-        'delete_branch', args)
-    myCursor.execute()
-    cnx.commit()
+def deleteBranch(branchId):
+    try:
+        args = [branchId]
+        myCursor.callproc(
+            'delete_branch', args)
+        cnx.commit()
+    except mysql.connector.Error as err:
+        print(err)
 
 #####################################################
 # All Functions for Borrowers
@@ -307,7 +314,6 @@ def updateDueDate(bookId, cardNo, newDueDate):
         cnx.commit()
     except mysql.connector.Error as err:
         print(err)
-
 
     # print(resultArgs[3])
 if __name__ == "__main__":
