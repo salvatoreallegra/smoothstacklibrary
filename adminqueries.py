@@ -62,6 +62,7 @@ def addBookAndAuthor(bookName, authorName, publisherName):
 
         # myCursor.execute()
         cnx.commit()
+        print("Successful addition of book and author")
     except mysql.connector.Error as err:
         print(err)
 
