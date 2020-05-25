@@ -1,4 +1,7 @@
-# Flaming Flamingos Library App
+# Flamingos Library App
+
+## Description 
+This is a very simple library management system. 
 
 ## Technology 
 
