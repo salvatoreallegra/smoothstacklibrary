@@ -31,8 +31,6 @@ def getAllBooksAndAuthors():
         cnx.commit()
     except:
         print("Error getting books and authors, please re-enter data")
-    finally:
-        myCursor.close()
 
 
 def addBookAndAuthor(bookName, authorName, publisherName):
@@ -40,7 +38,8 @@ def addBookAndAuthor(bookName, authorName, publisherName):
         args = [authorName, bookName, publisherName]
         myCursor.callproc(
             'add_new_book_author', args)
-        myCursor.execute()
+
+        # myCursor.execute()
         cnx.commit()
     except mysql.connector.Error as err:
         print(err)
@@ -266,6 +265,7 @@ def updateDueDate(bookId, cardNo, newDueDate):
         cnx.commit()
     except mysql.connector.Error as err:
         print(err)
+
 
     # print(resultArgs[3])
 if __name__ == "__main__":
