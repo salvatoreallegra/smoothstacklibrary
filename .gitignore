@@ -5,6 +5,7 @@
 
 # dependencies
 env/
+__pycache__/
 
 # IDEs and editors
 **/.project
@@ -28,4 +29,3 @@ env/
 
 #sensitive_data
 **/secret.json
-

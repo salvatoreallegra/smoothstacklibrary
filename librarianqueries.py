@@ -271,3 +271,16 @@ def update_book_copies(nom_books, book_id, branch_id):
 #
 #
 # lib2()
+=======
+myCursor = cnx.cursor()
+
+
+def getAllLibraries():
+    libraryList = []
+    print("Hello Libraries")
+    myCursor.execute("SELECT branchID, branchName FROM tbl_library_branch")
+    myresult = myCursor.fetchall()
+    for x in myresult:
+        libraryList.append(x)
+    return libraryList
+>>>>>>> master
