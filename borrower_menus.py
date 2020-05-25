@@ -68,6 +68,7 @@ def display_borrower_checkout_menu(cardNum):
         return
     while (True):
         i = 0
+        print('\nBranch Selection')
         for x in result:
             i += 1
             libraryList.append(x[0])
@@ -83,25 +84,28 @@ def display_borrower_checkout_menu(cardNum):
         else:
             print("Invalid Choice Try Again")
 
-
 def display_borrower_book_menu(branchName, cardNum):
 
     bookList = getListOfBooksFromBranch(branchName, cardNum)
     bookIdList = []
 
     if not bookList:
-        print('\nNo Books Availabe at this library retuning to previous menu\n')
+        print('\nNo Books Available at this library retuning to previous menu\n')
         return
     while(True):
         i = 1
-        print("Pick the Book you want to check out")
+        print("\nPick the Book you want to check out")
         for x in bookList:
             print(f"{i}) {x[0]}")
             bookIdList.append(x[1])
 
         print(f"{i+1}) Return to previous menu")
-        choice = int(input('Choose book: '))
+        try:
+            choice = int(input('Choose book: '))
+        except ValueError:
+            print('\nInvalid entry tryagain\n')
         if choice > 0 and choice <= len(bookIdList):
+            print(bookIdList[choice-1])
             addBookIntoBookLoans(bookIdList[choice-1], branchName, cardNum)
             break
         elif choice == i + 1:
