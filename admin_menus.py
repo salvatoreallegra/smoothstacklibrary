@@ -104,6 +104,11 @@ def display_admin_menu_publishers():
         display_admin_menu_authors()
     elif choice == 2:
         print("Displaying all publishers")
+        getAllPublishers()
+        pubId = int(input("Enter publisher Id "))
+        pubName = ("Enter publisher name")
+        pubAddress = ("Enter publishers address")
+
     elif choice == 3:
         print("Delete Book")
     elif choice == 4:
@@ -150,35 +155,12 @@ def display_admin_menu_borrowers():
     print("5) Return to Main Menu")
 
     choice = int(input("Enter Selection "))
-
     if choice == 1:
-        print("Adding a borrower... ")
-        cardNo = int(
-            input('Please input a card number for the user(3 numbers only)... '))
-        name = input('Please input the borrowers name... ')
-        address = input('Please input the borrowers address... ')
-        phone = input(
-            'Please input the borrowers phone number ###-###-####... ')
-        addBorrower(cardNo, name, address, phone)
-
+        print("Add Borrow")
     elif choice == 2:
-        print("Updating a  Borrower... ")
-        getAllBorrowers()
-        cardNo = int(
-            input("Please input a card number for the user(3 numbers only)... "))
-        name = input('Please input the borrowers name... ')
-        address = input('Please input the borrowers address... ')
-        phone = input(
-            'Please input the borrowers phone number ###-###-####... ')
-        updateBorrower(cardNo, name, address, phone)
-
+        print("Update Borrow")
     elif choice == 3:
-        print('Deleting a Borrower... ')
-        getAllBorrowers()
-        cardNo = int(
-            input("Please input a card number for the user(3 numbers only)... "))
-        deleteBorrower(cardNo)
-
+        print("Delete Borrow")
     elif choice == 4:
         display_admin_menu()
     elif choice == 5:
