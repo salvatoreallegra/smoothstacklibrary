@@ -38,28 +38,29 @@ def display_main_menu():
 
 
 def display_library_branches_menu():
-    choice = 0
-    menuItemNo = 1
-    primaryKey = 0
-    selectionPrimaryKeyDictionary = {}
+    lib2()
+    # choice = 0
+    # menuItemNo = 1
+    # primaryKey = 0
+    # selectionPrimaryKeyDictionary = {}
 
-    # Call getAllLibraries located in librarianqueries.py
-    libraryList = getAllLibraries()
-    for library in libraryList:
-        # print out the second index in the list which will always be the library name
-        print(str(menuItemNo) + " " + library[1])
-        selectionPrimaryKeyDictionary[str(menuItemNo)] = library[0]
-        menuItemNo = menuItemNo + 1
-        print(selectionPrimaryKeyDictionary)
+    # # Call getAllLibraries located in librarianqueries.py
+    # libraryList = getAllLibraries()
+    # for library in libraryList:
+    #     # print out the second index in the list which will always be the library name
+    #     print(str(menuItemNo) + " " + library[1])
+    #     selectionPrimaryKeyDictionary[str(menuItemNo)] = library[0]
+    #     menuItemNo = menuItemNo + 1
+    #     print(selectionPrimaryKeyDictionary)
 
-    choice = input("Enter Your Selection: ")
+    # choice = input("Enter Your Selection: ")
 
-    # loop through map
-    for x in selectionPrimaryKeyDictionary:
-        if x == choice:
-            primaryKey = selectionPrimaryKeyDictionary[x]
+    # # loop through map
+    # for x in selectionPrimaryKeyDictionary:
+    #     if x == choice:
+    #         primaryKey = selectionPrimaryKeyDictionary[x]
 
-            print(primaryKey)
+    #         print(primaryKey)
 
 
 def display_library1_menu():
