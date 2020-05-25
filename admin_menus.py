@@ -96,9 +96,14 @@ def display_admin_menu_publishers():
 
     choice = int(input("Enter Selection "))
     if choice == 1:
-        print("Add Book")
+        print("To add a publisher please add publishers name address and phone number ")
+        name = input("Enter Publisher Name ")
+        address = input("Enter Publisher Address ")
+        phoneNumber = input("Enter Publisher Phone #")
+        addPublisher(name, address, phoneNumber)
+        display_admin_menu_authors()
     elif choice == 2:
-        print("Update Book")
+        print("Displaying all publishers")
     elif choice == 3:
         print("Delete Book")
     elif choice == 4:

@@ -147,12 +147,14 @@ def addPublisher(pubName, pubAddress, pubPhone):
         return False
 
 
-def updatePublisher():
-    args = []
-    myCursor.callproc(
-        'update_publisher', args)
-    myCursor.execute()
-    cnx.commit()
+def updatePublisher(publisherId):
+    try:
+        args = [publisherId]
+        myCursor.callproc(
+            'update_publisher', args)
+        cnx.commit()
+    except mysql.connector.Error as err:
+        print(err)
 
 
 def deletePublisher():
@@ -177,8 +179,6 @@ def getAllBranches():
         print(branchId, branchName, branchAddress)
         print("")
 
-    if cnx.is_connected():
-        print('still connected')
     cnx.commit()
 
 
@@ -299,6 +299,7 @@ def updateDueDate(bookId, cardNo, newDueDate):
         cnx.commit()
     except mysql.connector.Error as err:
         print(err)
+
 
     # print(resultArgs[3])
 if __name__ == "__main__":
