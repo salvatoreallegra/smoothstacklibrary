@@ -33,6 +33,27 @@ def getAllBooksAndAuthors():
         print("Error getting books and authors, please re-enter data")
 
 
+def getAllBooksAndAuthorsWithIds():
+
+    try:
+        query = ("SELECT b.bookId, b.title, a.authorId, a.authorName "
+                 "FROM library.tbl_book as b "
+                 "INNER JOIN tbl_book_authors ba on ba.bookId = b.bookId "
+                 "INNER JOIN tbl_author a on ba.authorId = a.authorId ")
+
+        myCursor.execute(query)
+
+        for (bookId, title, authorId, authorName) in myCursor:
+            print("Book Id ", "Book Title......",
+                  "AuthorId ", "Author Name.....")
+            print(bookId, title, authorId, authorName)
+            print("")
+
+        cnx.commit()
+    except:
+        print("Error getting books and authors, please re-enter data")
+
+
 def addBookAndAuthor(bookName, authorName, publisherName):
     try:
         args = [authorName, bookName, publisherName]
@@ -45,13 +66,26 @@ def addBookAndAuthor(bookName, authorName, publisherName):
         print(err)
 
 
-def updateBook(bookId):
-    args = [bookId]
-    myCursor.callproc(
-        'update_book', args)
-    myCursor.execute()
-    cnx.commit()
-    print('Book Updated Successfully...')
+def updateBookAuthors(bookId, bookName, authorId, authorName):
+    args = [bookId, bookName, authorId, authorName]
+    try:
+        myCursor.callproc(
+            'update_book_author', args)
+        cnx.commit()
+        print('Book and Author updated Successfully')
+    except mysql.connector.Error as err:
+        print(err)
+
+
+def deleteBookAuthors(bookId, authorId):
+    args = [bookId, authorId]
+    try:
+        myCursor.callproc(
+            'delete_book_author', args)
+        cnx.commit()
+        print('Book and Author updated Successfully')
+    except mysql.connector.Error as err:
+        print(err)
 
 
 def deleteBook(bookId):
@@ -265,7 +299,6 @@ def updateDueDate(bookId, cardNo, newDueDate):
         cnx.commit()
     except mysql.connector.Error as err:
         print(err)
-
 
     # print(resultArgs[3])
 if __name__ == "__main__":

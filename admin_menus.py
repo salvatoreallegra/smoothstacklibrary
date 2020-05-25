@@ -62,10 +62,20 @@ def display_admin_menu_authors():
         display_admin_menu_authors()
 
     elif choice == 2:
-        print("Update Book")
+        getAllBooksAndAuthorsWithIds()
+        bookId = int(input("Enter Book Id"))
+        bookName = input("Enter new book Name ")
+        authorId = int(input("Enter Author Id "))
+        authorName = input("Entter new Author Name")
+        updateBookAuthors(bookId, bookName, authorId, authorName)
+        display_admin_menu_authors()
     elif choice == 3:
-        getAllBooksAndAuthors()
-        print("Delete Book")
+        getAllBooksAndAuthorsWithIds()
+        bookId = int(input("Enter Book Id "))
+        authorId = int(input("Enter Author Id "))
+        deleteBookAuthors(bookId, authorId)
+        display_admin_menu_authors()
+
     elif choice == 4:
         display_admin_menu()
     elif choice == 5:
