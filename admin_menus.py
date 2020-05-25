@@ -42,10 +42,23 @@ def display_admin_menu_authors():
 
     choice = int(input("Enter Selection "))
     if choice == 1:
-        bookTitle = input("Enter book title")
-        authorName = input("Enter author name")
-        publisherName = input("Enter publisher name")
-        addBookAndAuthor(bookTitle, authorName, publisherName)
+        print("Before enterting a book and author, please enter the books publisher information")
+        publisherName = input("Enter Publishers Name")
+        publisherAddress = input("Enter Publishers Address")
+        publisherPhone = input("Publishers Phone #")
+
+        successfulAdd = addPublisher(
+            publisherName, publisherAddress, publisherPhone)
+        if successfulAdd == False:
+            display_admin_menu_authors()
+
+        print("Displaying Current Book and Authors")
+
+        # getAllBooksAndAuthors()
+        # bookName = input("Enter book name")
+        # authorName = input("Enter author name")
+        # publisherName = input("Enter publisher name")
+        # addBookAndAuthor(bookName, authorName, publisherName)
 
     elif choice == 2:
         print("Update Book")

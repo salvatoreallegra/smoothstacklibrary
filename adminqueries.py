@@ -1,6 +1,7 @@
 import mysql.connector
 from dbconnect import DBConn
 
+
 conn = DBConn()
 cnx = conn.getConnection()
 myCursor = cnx.cursor()
@@ -15,16 +16,16 @@ myCursor = cnx.cursor()
 def getAllBooksAndAuthors():
 
     try:
-        query = ("SELECT b.bookId, b.title, a.authorName "
+        query = ("SELECT b.title, a.authorName "
                  "FROM library.tbl_book as b "
                  "INNER JOIN tbl_book_authors ba on ba.bookId = b.bookId "
                  "INNER JOIN tbl_author a on ba.authorId = a.authorId ")
 
         myCursor.execute(query)
 
-        for (bookId, title, authorName) in myCursor:
-            print("Book Id", "Book Title", "Author Name")
-            print(bookId, title, authorName)
+        for (title, authorName) in myCursor:
+            print("Book Title......", "Author Name.....")
+            print(title, authorName)
             print("")
 
         cnx.commit()
@@ -34,30 +35,15 @@ def getAllBooksAndAuthors():
         myCursor.close()
 
 
-def addBookAndAuthor(bookId, authorName, publisherName):
-    boolAuthorExists = authorExists(authorName)
-    if boolAuthorExists:
-        print("This Author exists")
-    else:
-        print("Doesn't exist")
-
-        # args = [bookId]
-        # myCursor.callproc(
-        #     'add_new_book_and_author', args)
-        # myCursor.execute()
-        # cnx.commit()
-    print('Book and Author Added Successfully...')
-
-
-def authorExists(authorName):
-    query = (f"""SELECT authorName 
-              FROM tbl_author
-              WHERE authorName = '{authorName}' """)
-    myCursor.execute(query)
-    if not myCursor.fetchall():
-        return False
-    else:
-        return True
+def addBookAndAuthor(bookName, authorName, publisherName):
+    try:
+        args = [authorName, bookName, publisherName]
+        myCursor.callproc(
+            'add_new_book_author', args)
+        myCursor.execute()
+        cnx.commit()
+    except mysql.connector.Error as err:
+        print(err)
 
 
 def updateBook(bookId):
@@ -111,18 +97,21 @@ def getAllPublishers():
         print(publisherId, publisherName, publisherAddress, publisherPhone)
         print("")
 
-    if cnx.is_connected():
-        print('still connected')
     cnx.commit()
 
 
-def addPublisher():
-    args = []
-    myCursor.callproc(
-        'add_publisher', args)
-    myCursor.execute()
-    cnx.commit()
-    print('Publisher has been successfully added...')
+def addPublisher(pubName, pubAddress, pubPhone):
+    try:
+        args = [pubName, pubAddress, pubPhone, ]
+        myCursor.callproc(
+            'add_publisher', args)
+        # myCursor.execute()
+        cnx.commit()
+        print('Publisher has been successfully added...')
+        return True
+    except mysql.connector.Error as err:
+        print(err)
+        return False
 
 
 def updatePublisher():
