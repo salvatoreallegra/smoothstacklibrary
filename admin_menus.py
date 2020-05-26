@@ -43,6 +43,8 @@ def display_admin_menu_authors():
     choice = int(input("Enter Selection "))
     if choice == 1:
         print("Before entering a book and author, please enter the books publisher information ")
+        print("Displaying existing publishers... ")
+        getAllPublishers()
         publisherName = input("Enter Publishers Name ")
         publisherAddress = input("Enter Publishers Address ")
         publisherPhone = input("Publishers Phone # ")
@@ -110,8 +112,7 @@ def display_admin_menu_publishers():
         pubAddress = input("Enter publishers address ")
         pubPhone = input("Enter Publisher's phone number ")
         updatePublisher(pubId, pubName, pubAddress, pubPhone)
-        #display_admin_menu_authors()
-
+        # display_admin_menu_authors()
 
 
     elif choice == 3:
@@ -120,7 +121,6 @@ def display_admin_menu_publishers():
         pubId = int(
             input('Please enter the id number of the publisher you would like to delete... '))
         deletePublisher(pubId)
-
 
 
     elif choice == 4:

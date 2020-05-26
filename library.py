@@ -48,7 +48,8 @@ def display_library_branches_menu():
     # libraryList = getAllLibraries()
     # for library in libraryList:
     #     # print out the second index in the list which will always be the library name
-    #     print(str(menuItemNo) + " " + library[1])
+    #     print(str(menuItemNo) + " " + library[1])3
+
     #     selectionPrimaryKeyDictionary[str(menuItemNo)] = library[0]
     #     menuItemNo = menuItemNo + 1
     #     print(selectionPrimaryKeyDictionary)

@@ -160,18 +160,16 @@ def updatePublisher(pubId, pubName, pubAddress, pubPhone):
         print(err)
 
 
-
 def deletePublisher(pubId):
     try:
         args = [pubId]
         myCursor.callproc(
             'delete_publisher', args)
-        #myCursor.execute()
+        # myCursor.execute()
         cnx.commit()
+        print('Publisher has been deleted successfully...')
     except mysql.connector.Error as err:
         print(err)
-    print('Publisher has been deleted successfully...')
-
 
 
 #####################################################
@@ -324,6 +322,7 @@ def updateDueDate(bookId, cardNo, newDueDate):
         cnx.commit()
     except mysql.connector.Error as err:
         print(err)
+
 
     # print(resultArgs[3])
 if __name__ == "__main__":
