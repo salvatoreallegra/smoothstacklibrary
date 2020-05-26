@@ -1,6 +1,8 @@
 from borrowerqueries import *
 from librarianqueries import getAllLibraries
 
+
+
 def display_borrower_menu():
     print('\n')
     try:
@@ -29,6 +31,7 @@ def display_borrower_menu():
                 print('Invalid Choice Try Again')
     else:
         print('\nInvalid card number: exiting to main.\n')
+
 
 def display_borrower_return_menu(cardNum):
     bookList = []
@@ -84,8 +87,8 @@ def display_borrower_checkout_menu(cardNum):
         else:
             print("Invalid Choice Try Again")
 
-def display_borrower_book_menu(branchName, cardNum):
 
+def display_borrower_book_menu(branchName, cardNum):
     bookList = getListOfBooksFromBranch(branchName, cardNum)
     bookIdList = []
 
@@ -93,9 +96,10 @@ def display_borrower_book_menu(branchName, cardNum):
         print('\nNo Books Available at this library retuning to previous menu\n')
         return
     while(True):
-        i = 1
+        i = 0
         print("\nPick the Book you want to check out")
         for x in bookList:
+            i+=1
             print(f"{i}) {x[0]}")
             bookIdList.append(x[1])
 
@@ -104,6 +108,7 @@ def display_borrower_book_menu(branchName, cardNum):
             choice = int(input('Choose book: '))
         except ValueError:
             print('\nInvalid entry tryagain\n')
+            continue
         if choice > 0 and choice <= len(bookIdList):
             print(bookIdList[choice-1])
             addBookIntoBookLoans(bookIdList[choice-1], branchName, cardNum)
