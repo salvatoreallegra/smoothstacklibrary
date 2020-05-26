@@ -121,8 +121,9 @@ def deleteAuthor(authorId):
 #####################################################
 
 def getAllPublishers():
-    query = ("select publisherId, publisherName, publisherAddress, publisherPhone"
-             "from tbl_publisher")
+    query = ("select publisherId, publisherName, publisherAddress, publisherPhone "
+             "from tbl_publisher ")
+
     myCursor.execute(query)
 
     for (publisherId, publisherName, publisherAddress, publisherPhone) in myCursor:
@@ -148,22 +149,30 @@ def addPublisher(pubName, pubAddress, pubPhone):
         return False
 
 
-def updatePublisher(publisherId):
+def updatePublisher(pubId, pubName, pubAddress, pubPhone):
     try:
-        args = [publisherId]
+        args = [pubId, pubName, pubAddress, pubPhone]
         myCursor.callproc(
             'update_publisher', args)
         cnx.commit()
+        print('Publish has been updated successfully...')
     except mysql.connector.Error as err:
         print(err)
 
 
-def deletePublisher():
-    args = []
-    myCursor.callproc(
-        'delete_publisher', args)
-    myCursor.execute()
-    cnx.commit()
+
+def deletePublisher(pubId):
+    try:
+        args = [pubId]
+        myCursor.callproc(
+            'delete_publisher', args)
+        #myCursor.execute()
+        cnx.commit()
+    except mysql.connector.Error as err:
+        print(err)
+    print('Publisher has been deleted successfully...')
+
+
 
 #####################################################
 # All Functions for Branches
