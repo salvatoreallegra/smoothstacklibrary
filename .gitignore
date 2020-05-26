@@ -2,6 +2,7 @@
 
 # compiled output
 **/dist
+*.pyc
 
 # dependencies
 env/
