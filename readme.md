@@ -1,7 +1,7 @@
-# Flamingos Library App
+# Flamingos Library App team project created at SmoothStack
 
 ## Description 
-This is a very simple library management system. 
+Library management system written in Python. 
 
 ## Technology 
 
